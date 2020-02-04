@@ -1,1 +1,1 @@
-web: python truechat/manage.py runserver 0.0.0.0:$PORT --noreload
+web: python api/manage.py runserver 0.0.0.0:$PORT --noreload
