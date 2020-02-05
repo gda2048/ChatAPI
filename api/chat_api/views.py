@@ -28,7 +28,7 @@ class MessageViewSet(mixins.RetrieveModelMixin,
     """
     Message related APIs.
 
-    list: Returns messages got by the user or ?is_read=True is specified only unread got messages.
+    list: Returns messages got by the user or ?is_read=False is specified only unread got messages.
     retrieve: Returns message by its id to the sender or receiver.
     create: Create new message.
     delete: Deletes created message by its id.
@@ -36,7 +36,8 @@ class MessageViewSet(mixins.RetrieveModelMixin,
     serializer_class = MessageSerializer
 
     def get_queryset(self):
-        if self.request.query_params.get('is_read'):
+        is_read = self.request.query_params.get('is_read')
+        if is_read == 'False':
             return Message.objects.filter(receiver=self.request.user, is_read=False)
         return Message.objects.filter(Q(sender=self.request.user) | Q(receiver=self.request.user))
 
