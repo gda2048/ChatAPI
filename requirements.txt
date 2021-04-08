@@ -1,4 +1,4 @@
-Django==2.2.5
+Django==2.2.20
 django-cors-headers==3.2.1
 django-decouple==2.1
 django-rest-framework==0.1.0
